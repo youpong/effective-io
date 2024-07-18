@@ -28,9 +28,18 @@ auto read_by_line(Command &cmd) {
     }
 }
 
-
-int main() {
+int main(int argc, char* argv[]) {
     Command c;
-    read_by_line(c);
+
+    if (argc != 2) {
+        std::cerr << "Error: specify -c or -h" << std::endl;;
+        return 1;
+    }
+    if ("-c"s == argv[1]) {
+        read_by_char(c);
+    } else if ("-l"s == argv[1]) {
+        read_by_line(c);
+    }
+
     std::cout << std::format("line: {}, characters: {}\n", c.line, c.output.size());
 }
