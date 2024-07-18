@@ -23,8 +23,12 @@ auto read_by_char(Command &cmd) {
 auto read_by_line(Command &cmd) {
     std::string s{};
     while(std::getline(std::cin, s)) {
-        cmd.line++;
-        cmd.output += s + "\n"s;
+        if ((std::cin.rdstate() & std::ios_base::eofbit) == false) {
+            cmd.output += s + "\n"s;
+            cmd.line++;
+        } else {
+            cmd.output += s;
+        }
     }
 }
 
