@@ -32,6 +32,14 @@ auto read_by_line(Command &cmd) {
     }
 }
 
+auto read_by_line2(Command &cmd) {
+    std::string s{};
+    while(std::getline(std::cin, s)) {
+        cmd.output += s + "\n"s;
+        cmd.line++;
+    }
+}
+
 [[noreturn]] auto show_usage() {
         std::cerr << "Error: specify -c or -h" << std::endl;;
         exit(1);
@@ -43,10 +51,13 @@ int main(int argc, char* argv[]) {
     if (argc != 2) {
         show_usage();
     }
+
     if ("-c"s == argv[1]) {
         read_by_char(c);
     } else if ("-l"s == argv[1]) {
         read_by_line(c);
+    } else if ("-l2"s == argv[1]) {
+        read_by_line2(c);
     } else {
         show_usage();
     }
