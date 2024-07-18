@@ -36,3 +36,6 @@ real    0m1.115s
 user    0m1.086s
 sys     0m0.026s
 ```
+
+## License
+MIT
